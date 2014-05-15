@@ -1,5 +1,17 @@
 Cheerup::Application.routes.draw do
   
+  get "quips/new"
+
+  get "quips/create"
+
+  get "quips/edit"
+
+  get "quips/update"
+
+  get "quips/show"
+
+  get "quips/delete"
+
   devise_for :users
 
   root :to => 'application#index'
