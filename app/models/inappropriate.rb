@@ -1,4 +1,3 @@
 class Inappropriate < Feedback
-  attr_accessible :inappropriate
-    validates :inappropriate, presence: true
+  belongs_to :user
 end

@@ -1,9 +1,11 @@
 class Quip < ActiveRecord::Base
-  attr_accessible :image, :jackass_count, :message, :rating, :user_id
   belongs_to :user
+  attr_accessible :image, :jackass_count, :message, :rating, :user_id
+  
 
-  has_many :inappropriates, through: :feedbacks
-  has_many :likes, through: :feedbacks
+  has_many :inappropriates
+  has_many :likes
+  has_many :feedbacks
 
   validates :message, presence: true
   validates_length_of :message, maximum: 141 
@@ -12,6 +14,8 @@ class Quip < ActiveRecord::Base
   validates :image, presence: true
 
   after_initialize :defaults
+
+
 end
 
 

@@ -4,18 +4,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_pic, :reputation, :username, :banned
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_pic, :reputation, :username, :banned, :image
   
   has_many :quips, :dependent => :destroy
   has_many :feedbacks, :dependent => :destroy
-  has_many :inappropriates, through: :feedbacks
-  has_many :likes, through: :feedbacks
+  has_many :inappropriates
+  has_many :likes
 
   validates :username, presence: true
   validates :reputation, presence: true
   validates :banned, :inclusion => {:in => [true, false]}
 
   after_initialize :defaults
+
+
 end
 
 
@@ -24,3 +26,4 @@ def defaults
   self.profile_pic ||= 'none'
   self.banned ||= false
 end
+
